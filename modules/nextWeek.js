@@ -3,7 +3,7 @@ export function nextWeek() {
   const nextWeek = new Date();
   nextWeek.setDate(nextWeek.getDate() + 7);
 
-  console.log(nextWeek);
+  
 
   let day = ("0" + nextWeek).slice(9, 11);
   let month = ("0" + (today.getMonth() + 1)).slice(-2);
