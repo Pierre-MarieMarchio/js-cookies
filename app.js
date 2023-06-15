@@ -2,7 +2,7 @@ import { nextWeek } from "./modules/nextWeek.js";
 
 nextWeek();
 
-const show = document.querySelector(".show");
+const show = document.querySelector(".show-list");
 const infTxt = document.querySelector(".inf-txt");
 const btns = document.querySelectorAll("button");
 const inputs = document.querySelectorAll("input");
@@ -20,20 +20,28 @@ function btnAction() {
         btnObj[attrName] = attrValue;
       });
 
-     
-
       if (desc === "create") {
         console.log(btnObj);
-        creatcookie(
-          btnObj.cookieName,
-          btnObj.cookieValue,
-          btnObj.cookieExpDate
-        );
+        creatcookie(btnObj.name, btnObj.value, btnObj.expDate);
       } else if (desc === "show") {
         listeCookie();
       }
     });
   });
+}
+
+function creatcookie(name, value, expDate) {
+  let inf = document.createElement("li");
+
+  document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(
+    value
+  )};expires=${expDate.toUTCString()}`;
+
+  inf.innerText = `Cookie ${name} created`;
+  show.appendChild(inf);
+  setTimeout(() => {
+    inf.remove();
+  }, 1500);
 }
 
 btnAction();
